@@ -2,6 +2,9 @@
 
 A new Flutter project.
 
+Here is a video demonstration:<br>
+https://github.com/otboss/cipherchat/blob/video-demo/cipherchat_demo_and_testing.mp4?raw=true
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
