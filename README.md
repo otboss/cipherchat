@@ -3,7 +3,7 @@
 A new Flutter project.
 
 Here is a video demonstration:<br>
-https://github.com/otboss/cipherchat/blob/video-demo/cipherchat_demo_and_testing.mp4?raw=true
+https://youtu.be/het6v4V4aVo
 
 ## Getting Started
 
