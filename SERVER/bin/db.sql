@@ -1,0 +1,46 @@
+CREATE DATABASE cipherchat;
+USE cipherchat;
+
+CREATE TABLE IF NOT EXISTS groups(
+    gid INT(11) NOT NULL AUTO_INCREMENT,
+    joinKey VARCHAR(100) NOT NULL,
+    ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    UNIQUE(joinKey),
+    PRIMARY KEY(gid)
+);
+
+CREATE TABLE IF NOT EXISTS participants(
+    pid INT(11) NOT NULL AUTO_INCREMENT,
+    gid INT(11) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    publicKey VARCHAR(100) NOT NULL,
+    publicKey2 VARCHAR(100) NOT NULL,
+    ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    UNIQUE(gid, username),
+    PRIMARY KEY(pid),
+    FOREIGN KEY(gid) REFERENCES groups(gid)
+);
+
+CREATE TABLE IF NOT EXISTS messages(
+    mid INT(11) NOT NULL AUTO_INCREMENT,
+    gid INT(11) NOT NULL,
+    pid INT(11) NOT NULL,
+    message VARCHAR(300) NOT NULL,
+    ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    PRIMARY KEY(mid),
+    FOREIGN KEY(pid) REFERENCES participants(pid)
+);
+
+CREATE TABLE IF NOT EXISTS compositeKeys(
+    cpid INT(11) NOT NULL AUTO_INCREMENT,
+    mid INT(11) NOT NULL ,
+    gid INT(11) NOT NULL,
+    pid INT(11) NOT NULL,
+    compositeKey VARCHAR(255) NOT NULL,
+    ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    UNIQUE(mid, pid),
+    PRIMARY KEY(cpid),
+    FOREIGN KEY(mid) REFERENCES messages(mid),
+    FOREIGN KEY(gid) REFERENCES groups(gid),
+    FOREIGN KEY(pid) REFERENCES participants(pid)
+);

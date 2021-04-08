@@ -1,3 +1,5 @@
+SERVER/bin/node_modules/
+
 # Miscellaneous
 *.class
 *.log
